@@ -43,13 +43,42 @@ AutoPent operates on a modular, multi-threaded architecture separated into disti
 * `reporting.py`: Generates the final DevSecOps PDF reports using ReportLab.
 
 ## 6. Tech Stack
-* **Programming Language:** Python 3.12
-* **AI Model:** Google Gemini 2.5 Flash (via `google-genai`)
-* **Offensive Framework:** Metasploit Framework (`msfrpcd`, `pymetasploit3`)
-* **Graphical User Interface:** PyQt5
-* **Web Scraping & Parsing:** BeautifulSoup4, Requests
-* **Reporting:** ReportLab
+**Core & Backend**
+* Python 3.12
 
+**User Interface (Web & Desktop)**
+* TypeScript
+* React
+* Tailwind CSS
+* shadcn/ui
+* CSS
+* PyQt5
+
+**Artificial Intelligence**
+* Google Gemini 2.5 Flash
+* Gemma 4 31B
+* Google GenAI SDK (`google-genai`)
+
+**Offensive Security & Reconnaissance**
+* Metasploit Framework (`msfrpcd`)
+* pymetasploit3
+* Nmap
+* SQLMap
+* crt.sh API
+* WHOIS API
+
+**Data Processing & Integration**
+* BeautifulSoup4
+* Requests
+* ReportLab
+* python-dotenv
+
+**Development & Tooling**
+* Bun
+* Playwright
+* ESLint
+* Git
+* GitHub
 ## 7. Real-World Examples Used
 During development and testing, AutoPent was deployed against standard, legally permissible vulnerable environments (such as ITSEC Games and local DVWA instances). 
 * **Scenario:** The Recon Engine identified a hidden parameter (`userinfo.php?user=admin`). 

@@ -1,0 +1,8 @@
+google-generativeai
+python-dotenv
+requests
+reportlab
+pymetasploit3
+dnspython
+python-whois
+PyQt5

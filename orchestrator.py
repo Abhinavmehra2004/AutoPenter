@@ -21,14 +21,14 @@ def run_agentic_pipeline(target_url, recon_data, logger_callback):
     vuln_results = {"Raw_Findings": {}, "AI_Fuzzer": []}
     
     logger_callback("[+] AI Engine formulating aggressive attack strategy...")
-    strategy = ai_determine_attack_path(recon_data)
+    strategy = ai_determine_attack_path(recon_data, logger_callback)
     
     tasks = strategy.get("tasks", [])
     
     # 1. Run the Deep Crawler and Fuzzer
     logger_callback("[*] Launching Deep Crawler and Intelligent Fuzzer...")
     # This function now handles its own internal parameter mapping
-    fuzzer_results = fuzz_endpoint(target_url)
+    fuzzer_results = fuzz_endpoint(target_url, logger_callback)
     vuln_results["AI_Fuzzer"] = fuzzer_results
 
     # 2. Run traditional tools with increased 180s timeout

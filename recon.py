@@ -64,7 +64,7 @@ def run_recon(target_url):
     recon_results = {"Target": target_url, "Domain": domain, "IP_Resolution": ip_data}
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
-        f_headers = executor.submit(lambda url: dict(requests.get(url, timeout=5).headers), target_url)
+        f_headers = executor.submit(lambda url: dict(requests.get(url, timeout=15).headers), target_url)
         f_whois = executor.submit(get_whois_info, domain)
         f_dns = executor.submit(get_dns_records, domain)
         f_sub = executor.submit(get_subdomains_crtsh, domain)

@@ -1,0 +1,2 @@
+sample.mp4 filter=lfs diff=lfs merge=lfs -text
+sample.mov filter=lfs diff=lfs merge=lfs -text

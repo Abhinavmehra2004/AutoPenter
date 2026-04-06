@@ -104,7 +104,7 @@ During development and testing, AutoPent was deployed against standard, legally 
 ### 3. Environment Setup
 Create a `.env` file in the root directory. **Do not commit this file to version control.**
 
-GEMINI_API_KEY=your_api_key< br>
+GEMINI_API_KEY=your_api_key<br>
 METASPLOIT_RPC_HOST=0.0.0.0
 METASPLOIT_RPC_PORT=55553
 METASPLOIT_RPC_PASS=your_secure_password

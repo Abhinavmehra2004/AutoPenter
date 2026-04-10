@@ -1,6 +1,7 @@
 # AutoPent: AI-Agentic Penetration Testing Framework
 
-**Author:** Abhinav Mehra (abhinavmehra2004)  
+**Author:** Abhinav Mehra  
+**Author:** Himanshu Gaur
 **Domain:** Cybersecurity, Offensive Security, Generative AI  
 
 AutoPent is a next-generation, autonomous penetration testing framework designed to bridge the gap between static vulnerability scanners and manual offensive security operations. By utilizing Large Language Models (LLMs) as a core reasoning engine, AutoPent orchestrates the entire cyber kill chain from initial reconnaissance to active exploitation and remediation.

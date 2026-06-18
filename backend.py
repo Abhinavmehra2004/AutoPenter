@@ -13,8 +13,15 @@ try:
     from exploitation import run_exploit
     from ai_engine import ai_chain_vulnerabilities
     from reporting import generate_security_report
-except ImportError as e:
+except Exception as e:
+    import traceback
     print(f"Error importing modules: {e}")
+    traceback.print_exc()
+    run_agentic_pipeline = None # Define as None to avoid NameError later
+    run_recon = None
+    run_exploit = None
+    ai_chain_vulnerabilities = None
+    generate_security_report = None
 
 app = Flask(__name__)
 # Explicitly allow the origin to avoid CORS issues with EventSource
@@ -46,6 +53,8 @@ def generate_scan_events(target_url):
             
             # PHASE 1: RECON
             stream_logger("[+] PHASE 1 · Zero-API Reconnaissance …", "phase", 1, "active")
+            if run_recon is None:
+                raise Exception("Module 'recon' failed to load. Check server logs.")
             recon_data = run_recon(target_url)
             ip = recon_data.get('IP_Resolution', {}).get('ip', 'Unknown')
             stream_logger(f"    IP Resolved: {ip}")
@@ -53,6 +62,8 @@ def generate_scan_events(target_url):
 
             # PHASE 2: FUZZING
             stream_logger("[+] PHASE 2 · Gemini AI Orchestrator + Fuzzing …", "phase", 2, "active")
+            if run_agentic_pipeline is None:
+                raise Exception("Module 'orchestrator' failed to load. Check server logs.")
             vuln_data = run_agentic_pipeline(target_url, recon_data, stream_logger)
             num_vulns = len(vuln_data.get('AI_Fuzzer', []))
             stream_logger(f"    {num_vulns} dynamic vulnerabilities found.")

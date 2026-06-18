@@ -101,6 +101,10 @@ def generate_scan_events(target_url):
     # Start the pentest in a background thread
     threading.Thread(target=run_pentest_thread, daemon=True).start()
 
+    # Send an initial padding to bypass aggressive proxy buffering (some load balancers buffer the first 1KB)
+    padding = ": " + (" " * 1024) + "\n\n"
+    yield padding
+
     # Yield items from the queue as SSE data
     while True:
         try:
@@ -110,8 +114,8 @@ def generate_scan_events(target_url):
                 break
             yield f"data: {json.dumps(item)}\n\n"
         except queue.Empty:
-            # Heartbeat to keep connection alive
-            yield ": heartbeat\n\n"
+            # Heartbeat to keep connection alive and bypass proxy buffers
+            yield f"data: {json.dumps({'text': '', 'type': 'heartbeat'})}\n\n"
 
 @app.route('/api/scan')
 def scan():

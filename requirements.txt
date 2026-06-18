@@ -8,3 +8,4 @@ python-whois
 Flask
 Flask-Cors
 gunicorn
+beautifulsoup4

@@ -58,9 +58,9 @@ def fuzz_endpoint(target_root, logger_callback=None):
             try:
                 test_params = {p: payload for p in params}
                 if method == "GET":
-                    response = requests.get(url, params=test_params, timeout=7)
+                    response = requests.get(url, params=test_params, timeout=2)
                 else:
-                    response = requests.post(url, data=test_params, timeout=7)
+                    response = requests.post(url, data=test_params, timeout=2)
                 
                 # Check for SQL/XSS signatures in response
                 res_text = response.text.lower()

@@ -39,12 +39,12 @@ def run_agentic_pipeline(target_url, recon_data, logger_callback):
             logger_callback(f"    -> AI Strategy Deployment: {tool}")
             
             if tool == "sqlmap":
-                # Deep crawl and high risk level for live site auditing
-                cmd = ["sqlmap", "-u", target_url, "--batch", "--forms", "--crawl=3", "--level=3"]
-                futures["SQLMap"] = executor.submit(run_command, cmd, 180) 
+                # Fast scan for Render free tier compatibility
+                cmd = ["sqlmap", "-u", target_url, "--batch", "--forms", "--crawl=1", "--level=1"]
+                futures["SQLMap"] = executor.submit(run_command, cmd, 20) 
             elif tool == "nmap_vuln":
                 clean_target = target_url.replace("http://", "").replace("https://", "").split("/")[0]
-                futures["Nmap"] = executor.submit(run_command, ["nmap", "--script", "vuln", clean_target], 180)
+                futures["Nmap"] = executor.submit(run_command, ["nmap", "--script", "vuln", clean_target], 20)
 
         # 3. Collect Results
         for tool_name, future in futures.items():

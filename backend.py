@@ -105,7 +105,7 @@ def generate_scan_events(target_url):
     while True:
         try:
             # Wait with a timeout to allow heartbeat
-            item = log_queue.get(timeout=15)
+            item = log_queue.get(timeout=5)
             if item is None:
                 break
             yield f"data: {json.dumps(item)}\n\n"

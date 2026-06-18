@@ -1,9 +1,10 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, send_from_directory
 from flask_cors import CORS
 import json
 import threading
 import queue
 import time
+import os
 
 # Import the existing pentest modules
 try:
@@ -18,6 +19,11 @@ except ImportError as e:
 app = Flask(__name__)
 # Explicitly allow the origin to avoid CORS issues with EventSource
 CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+@app.route('/')
+def index():
+    return {"status": "AutoPent API is running. Use the frontend to interact with this service."}
+
 
 def generate_scan_events(target_url):
     """

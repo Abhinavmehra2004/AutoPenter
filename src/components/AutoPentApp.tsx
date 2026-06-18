@@ -84,7 +84,8 @@ const AutoPentApp = () => {
     setStatus({ text: "● SCANNING", color: "destructive" });
 
     // Use EventSource to connect to the backend
-    const eventSource = new EventSource(`http://localhost:5000/api/scan?url=${encodeURIComponent(targetUrl)}`);
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const eventSource = new EventSource(`${apiUrl}/api/scan?url=${encodeURIComponent(targetUrl)}`);
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: autopent-backend
+    env: python
+    region: oregon 
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn --chdir /backend.py backend:app --worker-class gevent --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
